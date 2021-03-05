@@ -9,10 +9,11 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
     /**
      * @Route("/")
@@ -25,9 +26,19 @@ class ArticleController
      * @Route("/articles/{slug}")
      */
     public function show($slug){
-        return new Response(
-            sprintf('Будущая статья: %s',
-            $slug
+        $comments = array(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        );
+
+        return $this->render('articles/show.html.twig', array(
+            'article' => sprintf('Будущая статья: %s',
+                $slug
+            ),
+            'comments' => $comments
         ));
+
+
     }
 }

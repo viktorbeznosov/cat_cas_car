@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Статья Имярек {% endblock %}
+
+{% block body %}
+    <h1>{{ article }}</h1>
+
+    <p>Будущая страница статьи:</p>
+
+    <h2>Comments {{ comments|length }}</h2>
+
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
