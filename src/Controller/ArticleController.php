@@ -10,20 +10,19 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage(){
-        return new Response('Это наша первая страница на Symfony+++');
+        return $this->render('articles/homepage.html.twig');
     }
 
     /**
-     * @Route("/articles/{slug}")
+     * @Route("/articles/{slug}", name="app_article_show")
      */
     public function show($slug){
         $comments = array(
@@ -31,6 +30,8 @@ class ArticleController extends AbstractController
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         );
+
+        dump($comments);
 
         return $this->render('articles/show.html.twig', array(
             'article' => sprintf('Будущая статья: %s',
